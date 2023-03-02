@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <script type="module">
+            import { go } from "./0.js";
+            import { go as fail } from "./fail.js";
+
+            window.check = async () => {
+                let flag = document.querySelector("#input").value;
+                if (!flag.startsWith("picoCTF{") || !flag.endsWith("}")) {
+                    await fail();
+                    return;
+                }
+                flag = flag.slice(8, -1);
+
+                window.buffer = flag.split("");
+                go();
+            }
+        </script>
+    </head>
+    <body>
+        <input type="text" id="input" placeholder="picoCTF{...}"/>
+        <button onclick="check()">Check</button>
+    </body>
+</html>
