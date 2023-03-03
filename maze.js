@@ -29,12 +29,6 @@ for (let i = 0; i < n; i++) {
 const correctPath = content.split("").reduce((path, c) => [...path, map.get(path.slice(-1)[0]).get(c)], [0]);
 console.log(correctPath)
 
-const waypoints = new Map()
-
-for (let i = waypointInterval - 1; i < correctPath.length; i += waypointInterval) {
-    waypoints.set(i, correctPath[i])
-}
-
 const memoize = (fn) => {
     let cache = new WeakMap();
     const wrap = (idx, start, path) => {
@@ -56,12 +50,6 @@ const memoize = (fn) => {
 }
 
 const pathsAt = memoize((idx, start, path) => {
-    if (waypoints.has(idx)) {
-        if (waypoints.get(idx) !== start) {
-            return [];
-        }
-    }
-
     if (idx === path.length - 1) {
         if (start === path[idx]) {
             return [[[start], []]];
