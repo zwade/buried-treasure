@@ -16,9 +16,30 @@
                 go();
             }
         </script>
+        <style>
+.input-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.input-form .frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 24rem;
+}
+        </style>
     </head>
     <body>
-        <input type="text" id="input" placeholder="picoCTF{...}"/>
-        <button onclick="check()">Check</button>
+        <div class="input-form">
+            <div class="frame">
+                <input type="text" id="input" placeholder="picoCTF{...}"/>
+                <button onclick="check()">Check</button>
+            </div>
+        </div>
     </body>
 </html>

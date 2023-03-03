@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split("");
-const content = "NEED+A+MAP/HOW+ABOUT+100";
+const content = "Need+a+map/How+about+200";
 const n = 200;
 const waypointInterval = 4;
 
