@@ -4,7 +4,14 @@
             import { go } from "./0.js";
             import { go as fail } from "./fail.js";
 
+            const clear = () => {
+                const frame = document.querySelector(".frame");
+                frame.classList.remove("success")
+                frame.classList.remove("fail")
+            }
+
             window.check = async () => {
+                clear();
                 let flag = document.querySelector("#input").value;
                 if (!flag.startsWith("picoCTF{") || !flag.endsWith("}")) {
                     await fail();
@@ -15,8 +22,20 @@
                 window.buffer = flag.split("");
                 go();
             }
+
+            window.addEventListener("load", () => {
+                const input = document.querySelector("#input");
+
+                input.addEventListener("keydown", () => {
+                    clear();
+                })
+            })
         </script>
         <style>
+html, body {
+    font-family: sans-serif;
+}
+
 .input-form {
     display: flex;
     flex-direction: column;
@@ -26,11 +45,46 @@
 }
 
 .input-form .frame {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template:
+        "input    button" max-content
+        "message .      " 2rem
+        / 1fr max-content;
     max-width: 24rem;
+    width: 100%;
+    gap: 1rem;
+}
+
+.input-form .frame #input {
+    border: 0;
+    box-shadow: 0 0 0px 2px #10101040;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+}
+
+.input-form .frame button {
+    border: 0;
+    box-shadow: 0 0 0px 2px #10101040;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+}
+
+.input-form .frame.success button, .input-form .frame.success #input {
+    box-shadow: 0 0 0px 2px #10b060d0;
+}
+
+.input-form .frame.success::after {
+    content: "Correct!";
+    color: #10b060d0;
+}
+
+.input-form .frame.fail button, .input-form .frame.fail #input {
+    box-shadow: 0 0 0px 2px #db3333d0;
+}
+
+.input-form .frame.fail::after {
+    content: "Try again...";
+    color: #db3333d0;
 }
         </style>
     </head>

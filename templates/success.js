@@ -3,6 +3,6 @@ export const go = () => {
     if (window.buffer.length !== 0) {
         fail();
     } else {
-        alert("Yep!");
+        document.querySelector(".frame").classList.add("success");
     }
 }

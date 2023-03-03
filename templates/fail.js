@@ -1,1 +1,3 @@
-export const go = () => alert("Nope")
+export const go = () => {
+    document.querySelector(".frame").classList.add("fail");
+}

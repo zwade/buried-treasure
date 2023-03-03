@@ -1,0 +1,10 @@
+{
+  "name": "buried-treasure",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Zach <zach@nuvo.finance>",
+  "license": "MIT",
+  "dependencies": {
+    "vlq": "^2.0.4"
+  }
+}

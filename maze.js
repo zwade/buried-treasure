@@ -114,52 +114,13 @@ for (let i = 0; i < n; i++) {
     }
 }
 
-// for (let i = 1; i < x; i++) {
-//     while (true) {
-//         const subpath = correctPath.slice(0, i);
-//         const allPaths = pathsAt(0, correctPath[0], subpath);
-//         console.log(i, allPaths)
-//         const edgeToCut = i - 2;
-
-//         if (allPaths.length === 1) {
-//             break;
-//         }
-
-//         for (const [nodes, edges] of allPaths) {
-//             if (nodes[edgeToCut] !== subpath[edgeToCut]) {
-//                 if (correctPath.includes(nodes[edgeToCut])) {
-//                     const nextIdx = correctPath.indexOf(nodes[edgeToCut]);
-//                     if (content[nextIdx] === edges[edgeToCut]) {
-//                         console.log("not cutting", nodes[edgeToCut])
-//                         continue;
-//                     }
-//                 }
-
-//                 const startNode = nodes[edgeToCut];
-//                 const startEdge = edges[edgeToCut];
-
-//                 while (true) {
-//                     const nextNode = Math.floor(Math.random() * (n - 1)) + 1;
-//                     if (
-//                         nextNode === subpath[edgeToCut]
-//                         || new Set(map.get(startNode).values()).has(nextNode)
-//                     ) {
-//                         continue;
-//                     }
-
-//                     console.log("Cutting", startNode, startEdge, nodes[edgeToCut], "to", nextNode);
-//                     map.get(startNode).set(startEdge, nextNode);
-//                     break;
-//                 }
-//             }
-//         }
-
-//         pathsAt.clear();
-//     }
-// }
-
+const checkResult = pathsAt(0, correctPath[0], correctPath.slice(0, x - 1));
 console.log("Result");
-console.log(pathsAt(0, correctPath[0], correctPath.slice(0, x - 1)));
+console.log(checkResult);
+
+if (checkResult.length !== 1) {
+    throw new Error("Invalid result");
+}
 
 const dict = Array.from(new Array(n), (_, i) => [...map.get(i).entries()].reduce((acc, [k, v]) => (acc[k] = v, acc), {}));
 const output = {
