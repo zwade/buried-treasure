@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 
 const base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split("");
 const content = "Need+a+map/How+about+200";
@@ -119,4 +120,4 @@ const output = {
 };
 
 
-fs.writeFileSync("./output.json", JSON.stringify(output, null, 2));
+fs.writeFileSync(path.join(__dirname, "./output.json"), JSON.stringify(output, null, 2));

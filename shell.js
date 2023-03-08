@@ -1,11 +1,12 @@
 const fs = require("fs");
 const vlq = require("vlq");
+const path = require("path");
 
-const template = fs.readFileSync("./templates/template.js");
-const html = fs.readFileSync("./templates/index.html")
-const success = fs.readFileSync("./templates/success.js")
-const fail = fs.readFileSync("./templates/fail.js")
-const maze = JSON.parse(fs.readFileSync("./output.json"));
+const template = fs.readFileSync(path.join(__dirname, "./templates/template.js"));
+const html = fs.readFileSync(path.join(__dirname, "./templates/index.html"))
+const success = fs.readFileSync(path.join(__dirname, "./templates/success.js"))
+const fail = fs.readFileSync(path.join(__dirname, "./templates/fail.js"))
+const maze = JSON.parse(fs.readFileSync(path.join(__dirname, "./output.json")));
 const base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split("");
 
 const encodeRanges = (ranges) => {
