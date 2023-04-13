@@ -6,6 +6,7 @@ const template = fs.readFileSync(path.join(__dirname, "./templates/template.js")
 const html = fs.readFileSync(path.join(__dirname, "./templates/index.html"))
 const success = fs.readFileSync(path.join(__dirname, "./templates/success.js"))
 const fail = fs.readFileSync(path.join(__dirname, "./templates/fail.js"))
+const mapImg = fs.readFileSync(path.join(__dirname, "./templates/pirate-map.png"))
 const maze = JSON.parse(fs.readFileSync(path.join(__dirname, "./output.json")));
 const base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split("");
 
@@ -81,3 +82,4 @@ const updatedHTML = html.toString().replace("{{scripts}}", `<script type="module
 fs.writeFileSync(`./outdir/index.html`, updatedHTML);
 fs.writeFileSync(`./outdir/success.js`, success);
 fs.writeFileSync(`./outdir/fail.js`, fail);
+fs.writeFileSync(`./outdir/pirate-map.png`, mapImg);

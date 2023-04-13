@@ -13,11 +13,16 @@
             window.check = async () => {
                 clear();
                 let flag = document.querySelector("#input").value;
-                if (!flag.startsWith("picoCTF{") || !flag.endsWith("}")) {
+                if (!flag.startsWith("plaidCTF{") || !flag.endsWith("}")) {
                     await fail();
                     return;
                 }
-                flag = flag.slice(8, -1);
+
+                flag = flag.slice(9, -1);
+                if (flag.length != 25) {
+                    await fail();
+                    return;
+                }
 
                 window.buffer = flag.split("");
                 go();
@@ -47,12 +52,22 @@ html, body {
 .input-form .frame {
     display: grid;
     grid-template:
+        "map      map   " max-content
         "input    button" max-content
         "message .      " 2rem
         / 1fr max-content;
     max-width: 24rem;
     width: 100%;
     gap: 1rem;
+}
+
+.input-form .frame #map {
+    grid-area: map;
+    background-image: url("./pirate-map.png");
+    height: 24rem;
+    background-position: center center;
+    background-size: 120%;
+    border-radius: 0.5rem;
 }
 
 .input-form .frame #input {
@@ -74,7 +89,7 @@ html, body {
 }
 
 .input-form .frame.success::after {
-    content: "Correct!";
+    content: "Land Ho!!";
     color: #10b060d0;
 }
 
@@ -83,7 +98,7 @@ html, body {
 }
 
 .input-form .frame.fail::after {
-    content: "Try again...";
+    content: "Nothing but ocean for miles...";
     color: #db3333d0;
 }
         </style>
@@ -91,7 +106,8 @@ html, body {
     <body>
         <div class="input-form">
             <div class="frame">
-                <input type="text" id="input" placeholder="picoCTF{...}"/>
+                <div id="map"></div>
+                <input type="text" id="input" placeholder="Plot yer course"/>
                 <button onclick="check()">Check</button>
             </div>
         </div>
