@@ -13,12 +13,12 @@
             window.check = async () => {
                 clear();
                 let flag = document.querySelector("#input").value;
-                if (!flag.startsWith("plaidCTF{") || !flag.endsWith("}")) {
+                if (!flag.startsWith("PCTF{") || !flag.endsWith("}")) {
                     await fail();
                     return;
                 }
 
-                flag = flag.slice(9, -1);
+                flag = flag.slice(5, -1);
                 if (flag.length != 25) {
                     await fail();
                     return;
